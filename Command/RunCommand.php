@@ -68,7 +68,7 @@ class RunCommand extends ContainerAwareCommand
                     ),
                     new InputOption(
                         'nano_sleep',
-                        's',
+                        'ns',
                         InputOption::VALUE_REQUIRED,
                         'If using duration, this is the time to sleep when there\'s no jobs in nanoseconds',
                         500000000
