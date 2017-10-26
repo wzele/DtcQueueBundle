@@ -107,13 +107,13 @@ class WorkerManager
         };
         try {
             $worker = $this->getWorker($job->getWorkerName());
+            $worker->setJob($job);
             $this->log('debug', "Start: {$job->getClassName()}->{$job->getMethod()}", $job->getArgs());
             $job->setStartedAt(new \DateTime());
             call_user_func_array(array($worker, $job->getMethod()), $job->getArgs());
 
             // Job finshed successfuly... do we remove the job from database?
             $job->setStatus(BaseJob::STATUS_SUCCESS);
-            $job->setMessage(null);
         } catch (\Throwable $exception) {
             $handleException($exception);
         } catch (\Exception $exception) {
